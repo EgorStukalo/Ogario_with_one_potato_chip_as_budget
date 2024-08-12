@@ -17,5 +17,5 @@ class Player:
         if pressed[pygame.K_d]:
             self.hitbox.x += 3
     def drawing(self):
-        pygame.draw.ellipse(self.window,[15,255,20],self.hitbox)
+        pygame.draw.ellipse(self.window,[255,255,255],self.hitbox)
 

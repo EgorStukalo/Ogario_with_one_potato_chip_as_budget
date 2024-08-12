@@ -11,7 +11,7 @@ class Game_is_game:
         self.true_false = True
         self.fps = pygame.time.Clock()
         self.enemy_creation = pygame.USEREVENT
-        pygame.time.set_timer(self.enemy_creation, 100)
+        pygame.time.set_timer(self.enemy_creation, 300)
         self.enemy_list = []
         self.enemy_number = 0
         #self.score_text = pg.freetype.Font("BodoniFLF-Roman.ttf", 30)
@@ -25,8 +25,9 @@ class Game_is_game:
             if event.type == pg.QUIT:
                 self.true_false = False
             if event.type == self.enemy_creation:
-                self.enemy_side = random.randint(self.player.hitbox.width-4,self.player.hitbox.width+4)
-                self.enemy = e.Enemy(self.window,self.enemy_side)
+                random_path = random.randint(0, 1)
+                self.enemy_side = random.randint(self.player.hitbox.width-4,self.player.hitbox.width+15)
+                self.enemy = e.Enemy(self.window,self.enemy_side,random_path)
                 self.enemy_number += 1
                 self.enemy_list.append(self.enemy)
 
@@ -44,8 +45,8 @@ class Game_is_game:
         for enemy in self.enemy_list:
             if self.player.hitbox.colliderect(enemy.hitbox) == True:
                 if self.player.hitbox.w >= enemy.hitbox.w:
-                    self.player.hitbox.w += enemy.hitbox.w / 2
-                    self.player.hitbox.h += enemy.hitbox.w / 2
+                    self.player.hitbox.w += 3
+                    self.player.hitbox.h += 3
                     self.enemy_list.remove(enemy)
                 else:
                     self.true_false = False
